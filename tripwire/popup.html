@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Tripwire</title>
+  </head>
+  <body>
+    <header class="chrome">
+      <div class="chrome-row">
+        <h1>Tripwire</h1>
+        <button id="refresh" class="ghost" title="Check every watch now" aria-label="Check every watch now">
+          <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true">
+            <path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M13.5 1.8v3.1h-3.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p id="subtitle" class="subtitle">Loading</p>
+    </header>
+
+    <main id="list" class="list" aria-live="polite"></main>
+
+    <template id="empty-template">
+      <div class="empty">
+        <div class="empty-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44" width="44" height="44">
+            <circle cx="22" cy="22" r="20" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.35"/>
+            <path d="M13 22h6l3-7 4 14 3-7h2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2>Nothing watched yet</h2>
+        <p>
+          Go to any page, right-click the part you care about, and choose
+          <strong>Watch this with Tripwire</strong>.
+        </p>
+      </div>
+    </template>
+
+    <template id="item-template">
+      <article class="item">
+        <div class="item-head">
+          <span class="dot" data-dot></span>
+          <div class="item-titles">
+            <p class="item-label" data-label></p>
+            <p class="item-host" data-host></p>
+          </div>
+          <button class="ghost danger" data-delete title="Stop watching" aria-label="Stop watching">
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <p class="item-text" data-text></p>
+
+        <div class="item-foot">
+          <span class="meta" data-meta></span>
+          <div class="actions">
+            <select class="interval" data-interval aria-label="Check frequency">
+              <option value="5">5m</option>
+              <option value="15">15m</option>
+              <option value="30">30m</option>
+              <option value="60">1h</option>
+              <option value="360">6h</option>
+              <option value="1440">24h</option>
+            </select>
+            <button class="pill" data-pause>Pause</button>
+            <button class="pill" data-check>Check</button>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
